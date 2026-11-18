@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Karolina Kozak · Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* VOICE: quiet confidence; elegant, accomplished, unhurried.
+   IDEA: a gallery catalogue: a portrait plate, a credentials line, then works listed room by room.
+   PICTURE: an arched portrait with a soft pastel ground and an offset hairline frame.
+   COLOUR and TYPE: white ground, near-black ink, muted pastels only as small accents; Instrument Serif + Inter.
+   LAYOUT: nav, hero (statement left, portrait right), credentials row, works as category rows, contact. */
+:root{color-scheme:light; /* always light; change to "light dark" to follow the device */
+  --bg:#fffaf5;--ink:#1d2a33;--soft:#5f6b6f;
+  --line:#ecdfd3;--tint:#f8eee5;
+  --accent:#17806f;--teal:#1f9e89;--yellow:#f2c641;--sage:#9bb5a9;--coral:#ec7b69;--cream:#f3e3d6;--navy:#1d3a5f;
+  --data:var(--teal);--pm:#7d93a8;--res:var(--sage);
+  --web:var(--yellow);--art:var(--coral);--photo:#e3c9b4;
+  --plate:var(--cream)}
+:root[data-theme]{color-scheme:light}
+*{box-sizing:border-box;min-width:0}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 Inter,system-ui,sans-serif;overflow-x:clip}
+html{scroll-padding-top:72px;scroll-behavior:smooth}
+a{color:inherit}
+h1,h2,h3,h4,.serif{font-family:"Instrument Serif",Georgia,serif;font-weight:400;line-height:1.05;text-wrap:balance;margin:0}
+.wrap{max-width:1180px;margin:0 auto}
+.band{padding:clamp(40px,6vw,96px) max(5vw,20px)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
+
+nav{position:sticky;top:0;z-index:5;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav{padding:0 max(5vw,20px)}
+nav .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:4px 28px;padding:8px 0}
+.logo{font:400 26px "Instrument Serif",Georgia,serif;text-decoration:none;margin-right:auto}
+nav a.lnk{font-size:15px;color:var(--soft);text-decoration:none;min-height:44px;display:inline-flex;align-items:center}
+nav a.lnk:hover{color:var(--ink)}
+
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.85fr);gap:clamp(32px,6vw,96px);align-items:center}
+.kicker{color:var(--soft);font-size:15px;margin:0 0 20px}
+.hero h1{font-size:clamp(40px,5.2vw,68px);letter-spacing:-.01em}
+.hero h1 em{color:var(--accent)}
+.lede{font-size:17px;max-width:62ch;margin:28px 0 0;color:var(--soft)}
+.lede+.lede{margin-top:14px}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.btn{display:inline-flex;align-items:center;min-height:46px;padding:0 22px;border-radius:99px;border:1px solid var(--accent);font-weight:500;font-size:15px;text-decoration:none;background:var(--accent);color:#fff}
+.btn.alt{background:transparent;color:var(--ink);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.btn.alt:hover{border-color:var(--accent)}
+
+.portrait{position:relative;width:100%;max-width:400px;justify-self:end;aspect-ratio:1/1}
+.portrait::before{content:"";position:absolute;inset:14px -14px -14px 14px;border:1.5px solid var(--coral);border-radius:50%}
+.plate{position:absolute;inset:0;border-radius:50%;overflow:hidden;background:linear-gradient(160deg,var(--plate),color-mix(in srgb,var(--art) 35%,var(--plate)));display:grid;place-items:center}
+.plate img{width:100%;height:100%;object-fit:cover;object-position:50% 28%}
+.plate span{font:italic 400 clamp(90px,14vw,150px) "Instrument Serif",Georgia,serif;color:var(--ink);opacity:.22}
+.cap{position:absolute;left:0;bottom:-46px;font-size:13px;color:var(--soft)}
+
+.creds{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:clamp(28px,3vw,40px)}
+.creds .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+.cred h3{font-size:24px}
+.creds .wrap.degrees{grid-template-columns:repeat(2,minmax(0,1fr));gap:28px 56px}
+.degrees .cred h3{font-size:clamp(30px,3.4vw,40px)}
+.degrees .cred p{font-size:15px}
+.creds .wrap.orgs{display:grid;grid-template-columns:minmax(0,180px) repeat(2,minmax(0,1fr));gap:12px 56px;align-items:baseline;margin-top:30px;padding-top:24px;border-top:1px solid var(--line)}
+.orgs>b{font-size:14px;font-weight:500}
+.org h4{font-size:20px;line-height:1.2}
+.org p{margin:4px 0 0;font-size:14px;color:var(--soft)}
+.cred p{margin:6px 0 0;font-size:14px;color:var(--soft)}
+.creds .wrap.skills{display:block}
+.skills{margin-top:28px;font-size:14px;color:var(--soft)}
+.skills b{color:var(--ink);font-weight:500}
+.sk{margin:0 0 6px;display:grid;grid-template-columns:10.5em minmax(0,1fr);gap:0 10px}
+
+.head h2{font-size:clamp(40px,5vw,64px)}
+.head p{margin:12px 0 0;color:var(--soft);max-width:52ch}
+.works{margin-top:40px;scroll-margin-top:61px}
+.tabs{position:sticky;top:61px;z-index:4;background:var(--bg);display:flex;align-items:flex-end;gap:4px;overflow-x:auto;padding:12px 2px 0;border-bottom:1px solid var(--ink);scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 13px;border:1px solid color-mix(in srgb,var(--ink) 18%,transparent);border-bottom:0;border-radius:12px 12px 0 0;background:color-mix(in srgb,var(--c) 38%,var(--bg));color:var(--ink);text-decoration:none;font-size:14px;white-space:nowrap;transition:min-height .15s}
+.tab:hover{min-height:44px}
+.tab small{font-size:11px;color:var(--soft)}
+.tab[aria-selected=true]{min-height:48px;background:var(--bg);border-color:var(--ink);font-weight:500;margin-bottom:-1px;padding-bottom:1px;box-shadow:inset 0 4px 0 var(--c)}
+.page{padding-top:36px}
+.pager{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:24px}
+.pager a{text-decoration:none;color:var(--soft);font-size:15px;min-height:44px;display:inline-flex;align-items:center}
+.pager a b{color:var(--ink);font-weight:500;margin-inline:6px}
+.pager a:hover b{text-decoration:underline;text-underline-offset:4px}
+.page h3{font-size:clamp(34px,4vw,48px)}
+.page>p,.group>p{margin:10px 0 0;color:var(--soft)}
+.group+.group{margin-top:56px;padding-top:40px;border-top:1px solid var(--ink)}
+.group h3{font-size:clamp(34px,4vw,48px)}
+.item{padding-block:40px;border-bottom:1px solid var(--line)}
+.item:last-child{border:0}
+.row{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 16px}
+.item h4{font-size:32px}
+.pill{font-size:13px;padding:2px 10px;border-radius:99px;background:var(--tint);border:1px solid var(--line);white-space:nowrap}
+.where{margin:8px 0 0;font-size:15px;color:var(--soft)}
+.item p.txt{margin:14px 0 0;max-width:66ch}
+.tags{margin:10px 0 0;font-size:13px;color:var(--soft)}
+.ev{margin-top:22px}
+.ev h5{font:500 13px Inter,sans-serif;color:var(--soft);margin:0 0 10px}
+.evs{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:14px}
+.e{display:flex;flex-direction:column;gap:8px;text-decoration:none;color:inherit}
+.e .frame{aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--plate);display:grid;place-items:center}
+.e img{width:100%;height:100%;object-fit:cover}
+.e.todo .frame{background:transparent;border:1px dashed var(--line);color:var(--soft);font-size:13px}
+.e.link .frame{background:var(--tint);border:1px solid var(--line);font:italic 400 26px "Instrument Serif",Georgia,serif}
+.e.link:hover .frame{border-color:var(--ink)}
+.e span{font-size:14px}
+.e.todo span{color:var(--soft)}
+.e.vid .frame{position:relative;background:#18161c;color:#fff}
+.e.vid .frame b{position:absolute;width:52px;height:52px;border-radius:50%;background:#ffffffe6;color:#18161c;display:grid;place-items:center;font:16px Inter,sans-serif;padding-left:3px}
+.e.vid img{position:absolute;inset:0}
+.gal{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px}
+.gal::after{content:"";flex-grow:999}
+.gal figure{margin:0;border-radius:10px;overflow:hidden;background:var(--plate)}
+.gal img{display:block;width:100%;height:100%;object-fit:cover}
+.gal .gz{aspect-ratio:auto;border-radius:0;display:block;width:100%;height:100%}
+.gal .gz img{transition:opacity .2s}
+.gal .gz:hover img{opacity:.88}
+.gal figcaption{font-size:13px;color:var(--soft);padding:8px 10px;background:var(--bg)}
+.gal .todo{background:transparent;border:1px dashed var(--line);display:grid;place-items:center;color:var(--soft);font-size:13px}
+.zoom{all:unset;cursor:zoom-in;display:grid;place-items:center;aspect-ratio:4/3;border-radius:10px;overflow:hidden;background:var(--plate)}
+.zoom:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.zoom img,.e.doc img{width:100%;height:100%;object-fit:cover}
+.e.doc img{object-position:left top}
+.e span a{text-underline-offset:3px}
+.e.doc .frame{background:#fff}
+dialog#lb{border:0;padding:0;max-width:min(96vw,1400px);max-height:94vh;background:var(--bg);color:var(--ink);border-radius:12px;overflow:auto}
+dialog#lb::backdrop{background:#0e0d10d9}
+#lb img{display:block;width:100%;height:auto}
+#lb p{margin:0;padding:10px 16px;font-size:14px;color:var(--soft)}
+#lbx{position:sticky;top:8px;float:right;margin:8px;width:44px;height:44px;border-radius:50%;border:0;background:var(--bg);color:var(--ink);font-size:24px;cursor:pointer;box-shadow:0 2px 10px #0004}
+table.rep{width:100%;border-collapse:collapse;margin-top:20px;font-size:15px}
+.rep th{text-align:start;font:500 13px Inter,sans-serif;color:var(--soft);padding:8px 12px 8px 0;border-bottom:1px solid var(--ink)}
+.rep td{padding:12px 12px 12px 0;border-bottom:1px solid var(--line);vertical-align:top}
+.rep td em{font:italic 20px/1.2 "Instrument Serif",Georgia,serif}
+.rep td:last-child{white-space:nowrap}
+@media(max-width:600px){.stack thead{display:none}.stack tr{display:grid;padding-block:10px;border-bottom:1px solid var(--line)}.stack td{display:flow-root;border:0;padding:3px 0;padding-inline-start:6.5em}.stack td::before{content:attr(data-l);float:inline-start;width:6em;margin-inline-start:-6.5em;color:var(--soft);font-size:13px}.stack td:empty{display:none}}
+.evs{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-start}
+.e{width:150px;gap:6px}
+.e .frame,.zoom{aspect-ratio:3/2;border-radius:4px}
+.e.vid{width:176px}.e.vid .frame{aspect-ratio:16/9}
+.e.vid .frame b{width:34px;height:34px;font-size:12px}
+.e span{font-size:13px;line-height:1.35}
+.e.chip{width:auto;flex-direction:row;align-items:center;gap:10px;min-height:40px;padding:0 14px;border:1px solid var(--line);border-radius:4px;background:var(--tint)}
+.e.chip:hover{border-color:var(--ink)}
+.e.chip b{font-weight:400;color:var(--soft)}
+details.sql{margin-top:12px;border:1px solid var(--line);border-radius:6px;background:var(--tint);max-width:66ch}
+details.sql summary{cursor:pointer;padding:10px 14px;font-size:14px;font-weight:500;min-height:44px;display:flex;align-items:center}
+details.sql summary:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+details.sql pre{margin:0;padding:4px 14px 14px;overflow-x:auto}
+details.sql .sqlnote{margin:0;padding:0 14px 14px;font-size:14px;color:var(--soft)}
+details.sql code{font:13px/1.55 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre;overflow-wrap:normal}
+.note{font-size:13px;color:var(--soft);margin-top:28px}
+.contact{background:var(--tint);text-align:center}
+.contact h2{font-size:clamp(44px,6vw,76px)}
+.contact h2 em{color:var(--accent)}
+.contact p{max-width:52ch;margin:18px auto 0;color:var(--soft)}
+.contact .cta{justify-content:center}
+footer{font-size:13px;color:var(--soft);margin-top:56px}
+
+.rise{animation:rise .8s ease-out both}.rise.d2{animation-delay:.12s}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rise{animation:none}}
+@media(max-width:860px){.creds .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}.creds .wrap.orgs{grid-template-columns:repeat(2,minmax(0,1fr))}.orgs>b{grid-column:1/-1}}
+@media(max-width:600px){.tab{padding:0 14px;font-size:14px}.tabs{-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent)}}
+@media(max-width:700px){.hero .wrap{grid-template-columns:minmax(0,1fr)}.portrait{max-width:280px;justify-self:start;order:-1;margin:0 18px 40px 0}}
+@media(max-width:480px){.gal figure{width:100%!important;flex-grow:1!important;aspect-ratio:auto!important}.gal .gz img{height:auto}.sk{grid-template-columns:minmax(0,1fr);margin-bottom:12px}nav .wrap{gap:4px 16px}.logo{font-size:22px}.creds .wrap,.creds .wrap.degrees,.creds .wrap.orgs{grid-template-columns:minmax(0,1fr)}.item h4{font-size:26px}}
+</style>
+</head>
+<body>
+<nav aria-label="Main">
+  <div class="wrap">
+    <a class="logo" href="#about">Karolina Kozak</a>
+    <a class="lnk" href="#about">About</a>
+    <a class="lnk" href="#work">Work</a>
+    <a class="lnk" href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero band" id="about">
+  <div class="wrap">
+    <div class="rise">
+      <p class="kicker">Analytics · Neuroscience · Performing Arts — New York</p>
+      <h1>From Neuroscience to Business: <em>Using Data to Tell Stories That Drive Performance.</em></h1>
+      <p class="lede">I'm Karolina Kozak, an M.S. student in Management and Analytics at NYU with a B.S. in Integrative Neuroscience from Fordham University. What connects my work is simple: I love solving problems, telling stories, learning, and moving fluidly between fields. I build on solid technical foundations, bring creativity to the process, and follow the evidence where it leads, especially on collaborative teams.</p>
+      <p class="lede">I design research studies, build databases, and turn information into actionable decisions without losing sight of the people behind the data.</p>
+      <p class="lede">Outside of analytics and science, I'm a classically trained opera singer, a pianist of over 15 years, and a self-taught photographer. I bring that artistry to how I present ideas and solve problems.</p>
+      <div class="cta">
+        <a class="btn" href="#work">View Selected Work</a>
+        <a class="btn alt" href="#contact">Get in Touch</a>
+      </div>
+    </div>
+    <div class="portrait rise d2">
+      <div class="plate">
+        <!-- Put your photo next to this file as headshot.jpg and it appears here. -->
+        <img src="headshot.jpg" alt="Portrait of Karolina Kozak" onerror="this.remove()">
+        <span aria-hidden="true">K</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="creds band" aria-label="Credentials">
+  <div class="wrap degrees">
+    <div class="cred"><h3>M.S., NYU</h3><p>Management and Analytics, School of Professional Studies · 2026–2028</p></div>
+    <div class="cred"><h3>B.S., Fordham University</h3><p>Integrative Neuroscience, Cellular &amp; Molecular · Summa Cum Laude · GPA 3.975 · 2025</p></div>
+  </div>
+  <div class="wrap orgs">
+    <b>Current Organizations</b>
+    <div class="org"><h4>Advertising Research Foundation (ARF)</h4><p>YoungPros member</p></div>
+    <div class="org"><h4>Integrated Marketing Association (IMA) at NYU</h4><p>Member</p></div>
+  </div>
+  <div class="wrap skills"><p class="sk"><b>Tools</b> SQL &amp; BigQuery · Python (pandas, matplotlib) · R/RStudio · Tableau · Excel · MATLAB · ImageJ · Photoshop, Lightroom, Premiere Pro · Claude</p>
+    <p class="sk"><b>Analytical</b> Quantitative Research · Statistical Analysis · Survey Design · Data Cleaning · Database Design · Risk Assessment</p>
+    <p class="sk"><b>Business &amp; Creative</b> Sales · Marketing · Advertising · Social Media · Project Management · Photography · Piano · Public Speaking</p>
+    <p class="sk"><b>Languages</b> Polish (fluent)</p></div>
+</section>
+
+<section class="band" id="work">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <h2>Selected Work</h2>
+        <p>Past, present and ongoing projects. Choose a category to explore.</p>
+      </div>
+    </div>
+    <div class="works">
+      <div class="tabs" id="tabs" role="tablist" aria-label="Project categories"></div>
+      <div class="page" id="page" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<section class="band contact" id="contact">
+  <div class="wrap">
+    <h2>Let's Work <em>Together.</em></h2>
+    <p>I'm seeking Summer 2027 internships and analyst roles in entertainment, media and analytics.</p>
+    <div class="cta">
+      <a class="btn" href="https://www.linkedin.com/in/karolina-kozak-b31315220">LinkedIn</a>
+      <a class="btn alt" href="https://github.com/karokoz">GitHub</a>
+    </div>
+    <footer>© 2026 Karolina Kozak</footer>
+  </div>
+</section>
+
+<dialog id="lb" aria-label="Full-size view"><button id="lbx" aria-label="Close">×</button><img id="lbimg" alt=""><p id="lbcap"></p></dialog>
+<script>new MutationObserver(()=>{for(const c of document.querySelectorAll('.stack td:not([data-l])')){let i=0,p=c;while(p=p.previousElementSibling)i+=p.colSpan;c.dataset.l=c.closest('table').rows[0].cells[i]?.textContent||''}}).observe(document,{childList:true,subtree:true})</script>
+<script>
+{
+// ---- Setting: true shows dashed "To add" boxes while you work; false hides
+// anything not finished yet (empty evidence, an empty photo gallery, empty categories).
+const SHOW_PLACEHOLDERS = false;
+
+// ---- Categories: each one is its own page in the category menu ----
+const CATS = [
+  {id:"data", c:"var(--data)",         name:"Business & Media Analytics", sub:"SQL, statistics and reporting for business, media and entertainment"},
+  {id:"neuroscience", c:"var(--res)", name:"Neuroscience Research", sub:"Research and data analysis at Fordham University and Butler Hospital"},
+  {id:"music", c:"var(--art)",        name:"Music", sub:"Opera, musical theater and classical piano"},
+  {id:"code", c:"var(--web)",         name:"Web & Code", sub:"Things I've built"},
+  {id:"pm", c:"var(--pm)",           name:"Project Management", sub:"Plans, pitches and team projects"},
+  {id:"photography", c:"var(--photo)",  name:"Photography", sub:"Street and portrait photography in New York City"}
+];
+
+// ---- Repertoire: add a line for each piece you've performed ----
+// type = "Voice" or "Piano". work = the opera, show or collection (leave "" if none). video is optional.
+const REPERTOIRE = [
+  {title:"Intorno all'idol mio", type:"Voice", composer:"Antonio Cesti", work:"Orontea", video:""},
+  {title:"Quia respexit", type:"Voice", composer:"Johann Sebastian Bach", work:"Magnificat", video:""},
+  {title:"Vedrai, carino", type:"Voice", composer:"Wolfgang Amadeus Mozart", work:"Don Giovanni", video:""},
+  {title:"Un moto di gioia", type:"Voice", composer:"Wolfgang Amadeus Mozart", work:"Le nozze di Figaro", video:""},
+  {title:"Va, laisse couler mes larmes", type:"Voice", composer:"Jules Massenet", work:"Werther", video:"https://www.youtube.com/watch?v=rht7TQAfqMw"},
+  {title:"There Is Beauty in the Bellow of the Blast", type:"Voice", composer:"Gilbert & Sullivan", work:"The Mikado", video:"https://www.youtube.com/watch?v=XQgvsmB0xBc"},
+  {title:"Alone, and Yet Alive", type:"Voice", composer:"Gilbert & Sullivan", work:"The Mikado", video:"https://www.youtube.com/watch?v=6FUr4FIJK7w"},
+  {title:"As Long As He Needs Me", type:"Voice", composer:"Lionel Bart", work:"Oliver!", video:""},
+  {title:"Vienna", type:"Voice", composer:"Billy Joel", work:"The Stranger", video:""}
+];
+
+// ---- Projects ----
+// where: the location or work environment.
+// evidence: what proves the work. Each item is one of:
+//   {label:"Poster", src:"images/poster.jpg"}   -> shows the image
+//   {label:"Live Site", href:"https://..."}     -> shows a link
+//   {label:"Schema Diagram"}                    -> dashed box, still to add
+//   add zoom:true to an image to open it full size; add pdf:"files/x.pdf" to link a PDF
+//   add thumb:"images/x.jpg" to a video or link to use your own preview picture
+const PROJECTS = [
+  {cat:"data", title:"Spotify Tracks Database", where:"NYU School of Professional Studies · Database Management · team project", status:"Ongoing",
+   text:"I'm designing and building a BigQuery database from a recent Spotify tracks dataset, from a normalized schema through loading, cleaning and a data-quality report. Our business SQL queries ask how much of a song's popularity is explained by its sound profile compared with its context, and which sound profiles consistently succeed within each audience. The sound profiles that succeed within a segment help businesses and marketers make informed assumptions about that audience's subconscious behavioral patterns. Early findings: songs 3 to 5 minutes long are the most popular, and among hit songs, danceability is more closely tied to popularity than energy.",
+   tags:["SQL","BigQuery","Schema Design","Data Quality"],
+   evidence:[{label:"Popularity by Track Length", src:"images/spotify-chart-length.png", zoom:true},{label:"Database Design (ERD)", src:"images/spotify-erd.png", zoom:true},{label:"Data-Quality Checks: Validity", src:"images/spotify-dqa.png", zoom:true}],
+   sql:[
+     {q:"What are the most popular songs?", code:`select track_name, lead_artist, max_popularity, popularity_rank
+from (
+  select t.track_name,
+    a.artist_name as lead_artist,
+    max(t.popularity) as max_popularity,
+    dense_rank() over (order by max(t.popularity) desc) as popularity_rank
+  from spotify_dataset.SP_TRACK t
+  join spotify_dataset.SP_TRACK_ARTIST ta on t.track_id = ta.track_id
+  join spotify_dataset.SP_ARTIST a on a.artist_id = ta.artist_id
+  where ta.artist_order = 1
+  group by t.track_name, a.artist_name
+)
+where popularity_rank <= 10
+order by popularity_rank, track_name;`, note:"Uses a subquery, a dense_rank() window function and a three-table join. Grouping by song and lead artist removes duplicate releases of the same song, and dense_rank gives tied songs the same rank. Bad Bunny holds 7 of the 27 top-ranked songs, and Latin artists account for about 44% of the list."},
+     {q:"Which genre pairs share the most tracks?", code:`select ga.genre_name as genre_1,
+  gb.genre_name as genre_2,
+  count(*) as shared_tracks
+from spotify_dataset.SP_TRACK_GENRE a
+join spotify_dataset.SP_TRACK_GENRE b
+  on a.track_id = b.track_id
+  and a.genre_id < b.genre_id
+join spotify_dataset.SP_GENRE ga on ga.genre_id = a.genre_id
+join spotify_dataset.SP_GENRE gb on gb.genre_id = b.genre_id
+group by genre_1, genre_2
+order by shared_tracks desc
+limit 10;`, note:"A self-join on the track–genre linking table finds every pair of genres that share a track. It revealed a labeling issue: near-identical names like reggae and reggaeton share 804 tracks, so genres were likely collected by name search. That means an earlier finding, that multi-genre tracks are more popular, should be read with caution."}
+   ]},
+  {cat:"data", title:"Streaming Subscriber Baseline", where:"NYU School of Professional Studies · Quantitative Methods · group project", status:"Ongoing",
+   text:"My team is writing a descriptive baseline report framed around a hypothetical Warner Bros. scenario. We're conducting univariate, bivariate, and linear and logistic regression analyses, presenting the context of Warner Bros. and its recent acquisition by Paramount, and designing marketing strategies to promote HBO Max subscriptions.",
+   tags:["Statistics","Regression","Marketing Strategy","Entertainment"],
+   evidence:[{label:"Regression Chart"},{label:"Executive Summary"},{label:"Presentation Slides"}]},
+  {cat:"data", title:"Restaurant Sales Reporting", where:"Veselka, New York · Jul 2022 – present", status:"Ongoing",
+   text:"I compile end-of-shift sales-performance reports from POS data across 10–15 menu categories. The trends I gather inform promotions, social posts and seasonal menu changes, and I continue to pitch successful seasonal menu items. I also reconcile cash and tips against the POS.",
+   tags:["POS Data","Reporting","Trends","Menu Development"],
+   evidence:[{label:"Sample Report (Anonymized)"}]},
+
+  {cat:"pm", title:"Peanut Gallery", where:"NYU School of Professional Studies · Managing Technical Projects · team of 5", status:"Ongoing",
+   text:"I came up with this Chrome extension concept for timestamped, asynchronous commentary on streaming shows, like reading a book a friend has already recommended and annotated. I'm leading the team from the proposal and project charter through scheduling and a launch plan.",
+   tags:["Product Concept","Team Lead","Streaming"],
+   evidence:[{label:"Peanut Gallery Logo", src:"images/peanut-gallery-logo.jpg", zoom:true},{label:"Project Proposal"}]},
+  {cat:"pm", title:"Project Winning Plan", where:"NYU School of Professional Studies · Managing Technical Projects · individual", status:"Ongoing",
+   text:"I designed an app concept for amateur endurance athletes that builds a training schedule around their calendar and commute. I planned it with a hybrid approach: upfront requirements, agile sprints and a two-month pilot.",
+   tags:["Scope","Specifications","Hybrid Agile","Scrum"],
+   evidence:[{label:"Functional Specifications", src:"images/finish-line-specs.jpg", pdf:"files/project-finish-line-functional-specs.pdf"}]},
+  {cat:"pm", title:"Copilot Family Plan", where:"NYU School of Professional Studies · team pitch", status:"Past",
+   text:"My team pitched bundled family accounts where the assistant adapts its language to each age group. Our collaborative pitch to Microsoft software developers and project managers covered the idea, business case, tech and rollout, and financing.",
+   tags:["Pitch","Business Case"],
+   evidence:[{label:"Pitch Deck", src:"images/copilot-cover.jpg", pdf:"files/copilot-family-plan-pitch.pdf"},{label:"Rollout Plan", src:"images/copilot-rollout.jpg", zoom:true},{label:"Cost and Payback", src:"images/copilot-financing.jpg", zoom:true}]},
+  {cat:"pm", title:"Robinhood Risk & Continuity", where:"NYU School of Professional Studies · Organizational Risk Management · group project", status:"Ongoing",
+   text:"My group and I are building a risk register, a business impact analysis for critical processes, a continuity strategy, and an incident response plan for Robinhood Markets, Inc., aligned with NIST CSF 2.0, NYDFS Part 500 and SEC guidelines.",
+   tags:["Risk","BIA","NIST CSF","NYDFS Part 500"],
+   evidence:[{label:"Risk Register Excerpt"},{label:"Incident Response Plan"}]},
+
+  {cat:"neuroscience", title:"Ionic Liquids and Cell Death in Zebrafish", where:"Fordham University Lincoln Center · Head Researcher · Jan 2024 – Jan 2025", status:"Past",
+   text:"I designed and led a study, run in 3 trials with 2 molecular staining assays, of how Omim[Cl], an ionic liquid marketed as a biodegradable “green solvent,” affects 200 developing zebrafish embryos, working with Dr. Alma Rodenas-Ruano and Dr. Marie Thomas. Using microscopy and ImageJ image analysis, the stains showed increased DNA damage and cell death even at doses too low to kill most of the embryos outright. I collaborated with two other research teams to place the findings in context, presented the poster at Fordham's Integrative Neuroscience showcase, and wrote my thesis on the study.",
+   tags:["Study Design","Microscopy","ImageJ","Thesis"],
+   evidence:[
+     {label:"Conference Poster", src:"images/zebrafish-poster.jpg", zoom:true, pdf:"files/kozak-zebrafish-poster.pdf"},
+     {label:"Thesis Paper · 25 Pages", src:"images/zebrafish-thesis.jpg", pdf:"files/kozak-zebrafish-thesis.pdf"}
+   ]},
+  {cat:"neuroscience", title:"Sleep and Self-Injurious Behavior (SIB): Emotional Stop-Signal Task Study", where:"Fordham University · Mood and Behavior Lab · Research Assistant · 2022–2025", status:"Past",
+   text:"I worked on a 21-day study of whether poor sleep predicts next-day suicidal thoughts and self-injurious behavior in young adults, and whether impulse control explains the link. Participants kept daily diaries and wore sleep-tracking wristbands. I cleaned and analyzed hundreds of patient records for this ongoing study under IRB compliance, spearheaded the project's Excel-based analysis procedures (formulas, pivot tables, macros) that made the lab's data processing more efficient, and trained graduate researchers on the standardized methods while protecting the integrity of sensitive patient data.",
+   tags:["Excel","Data Analysis","Teaching"],
+   evidence:[{label:"Analysis Workflow Example"}]},
+  {cat:"neuroscience", title:"Gender Expression and Microaggressions Study (GEMS)", where:"Fordham University · Mood and Behavior Lab · Research Assistant · 2022–2025", status:"Past",
+   text:"I worked on a study of how microaggressions affect gender expression and mood disorders among transgender adolescents and youth. I co-developed survey instruments, administered standardized clinical measures, and analyzed participant data under IRB requirements. I also tested recruitment posts across platforms (Instagram, Facebook and Lex) and posting times, determining how our team could expand its reach while telling an honest and compelling story.",
+   tags:["Survey Design","Recruitment","Data Analysis"],
+   evidence:[{label:"Recruitment Post"},{label:"Engagement Comparison"}]},
+  {cat:"neuroscience", title:"Neurosurgical Interventions for OCD: Laser Interstitial Thermal Therapy (LITT)", where:"Butler Hospital, Providence, RI · OCD Research Volunteer · with Brown University · May – Sep 2023", status:"Past",
+   text:"I supported research on Laser Interstitial Thermal Therapy as a neurosurgical treatment for obsessive-compulsive disorder. I assisted Dr. Nicole McLaughlin in patient meetings on surgical eligibility and in pre- and post-surgery psychiatric exams, analyzed neuropsychological evaluations, and condensed hundreds of pages of records per patient into concise summaries for physicians. I also helped collect and analyze fMRI data, running MATLAB tasks during scans, and coordinated recruitment and scheduling across 3 concurrent studies.",
+   tags:["Clinical Research","Patient Assessment","fMRI","MATLAB"]},
+
+  {cat:"neuroscience", title:"Bioinformatics: Gene Expression and Sequence Analysis", where:"Fordham University · Bioinformatics (CISC 4020)", status:"Past",
+   text:"I worked with genetic data from the command line and in Python. I used UNIX tools (grep, sed, cut, sort and regular expressions) to search, filter and reformat large sequence files, and built my own local BLAST+ databases to compare DNA and protein sequences and identify genes that share a common ancestor. I also studied sequence alignment and phylogenetic trees, and in Python (pandas) cleaned a gene expression dataset, compared groups with matplotlib charts, and applied clustering and classification.",
+   tags:["Python","pandas","UNIX/Bash","BLAST+","Sequence Alignment"],
+   evidence:[{label:"Group Comparison Chart"},{label:"Code Notebook"}]},
+
+  {cat:"code", title:"Personal Schedule", where:"Personal project · hosted on GitHub Pages", status:"Ongoing",
+   text:"I built my own day, week and month planner with task categories, recurring events, task rollover and a Mindfulness Corner. I gathered feedback from peers with ADHD on what makes a planner work for them, which led to features like an Up Next panel for upcoming tasks and the ability to link tasks to scheduled events. The goal: a planner that's easy and fun to use for people who struggle most with planning and time management.",
+   tags:["HTML","CSS","JavaScript"],
+   evidence:[{label:"Live Site", href:"https://karokoz.github.io/daily_schedule/"},{label:"Code on GitHub", href:"https://github.com/karokoz/daily_schedule"},{label:"Screenshot"}]},
+  {cat:"code", title:"This Portfolio", where:"Personal project", status:"Ongoing",
+   text:"I designed, built and published this site myself in HTML, CSS and JavaScript, with Claude as a coding partner.",
+   tags:["HTML","CSS","JavaScript"],
+   evidence:[{label:"Code on GitHub"}]},
+
+  {cat:"data", title:"Menu Content on Instagram", where:"Veselka, New York", status:"Ongoing",
+   text:"I created Instagram posts and tracked how they performed against restaurant sales reports. Employee- and community-focused posts consistently outperform aesthetic, food-centered content: customers want to see what people like, not just what something looks like.",
+   tags:["Instagram","Content","Engagement"],
+   evidence:[{label:"Veselka on Instagram", href:"https://www.instagram.com/veselkanyc/", thumb:"images/veselka-logo.jpg"}]},
+
+  {cat:"music", title:"Singing", where:"Mezzo-Soprano · Trained in opera at Fiorello H. LaGuardia High School · 2017–2021", status:"Ongoing",
+   text:"I'm a mezzo-soprano who trained as an opera singer at Fiorello H. LaGuardia High School, performing arias, duets and choral works in Italian, French, German, Spanish and English. My repertoire spans Baroque and classical opera and oratorio, French Romantic opera, Gilbert & Sullivan operetta, jazz and pop. I have performed at Carnegie Hall and collaborated internationally. I'm also trained in musical theater and have performed in productions since I was 9 years old.",
+   tags:["Mezzo-Soprano","Opera","Musical Theater","Jazz","Five Languages"],
+   // Add a video as  {label:"Song title", youtube:"https://www.youtube.com/watch?v=..."}
+   evidence:[
+     {label:"“Va, laisse couler mes larmes” · Massenet, Werther", youtube:"https://www.youtube.com/watch?v=rht7TQAfqMw"},
+     {label:"“There Is Beauty in the Bellow of the Blast” · Gilbert & Sullivan, The Mikado", youtube:"https://www.youtube.com/watch?v=XQgvsmB0xBc"},
+     {label:"“Alone, and Yet Alive” · Gilbert & Sullivan, The Mikado", youtube:"https://www.youtube.com/watch?v=6FUr4FIJK7w"}
+   ]},
+  {cat:"music", title:"Classical Piano", where:"Lucy Moses School, Kaufman Music Center (2010–2021) · Playing since age 7", status:"Ongoing",
+   text:"I have played classical piano since I was seven and studied at the Lucy Moses School at Kaufman Music Center for eleven years, performing solo pieces ranging from concertos to sonatas and fugues.",
+   tags:["Piano","Classical"]},
+  {cat:"music", title:"Repertoire", where:"Voice · Updated as I learn new pieces", status:"Ongoing",
+   text:"I keep this running list of pieces I have learned and performed through my vocal training.",
+   tags:["Voice"], repertoire:true},
+
+  // Photos show in this order, left to right. To reorder, move a line up or down.
+  // Each one: {src:"images/photo-11.jpg", ratio:1.5, alt:"what it shows", caption:"optional"}
+  // ratio = width ÷ height (1.5 for a normal horizontal photo, 0.667 for vertical).
+  {cat:"photography", title:"Selected Photographs", where:"Personal practice · Shot on a Canon EOS Rebel T7", status:"Ongoing",
+   text:"I photograph the beauty of everyday life and reactions around New York City: street scenes, stark facial expressions, quiet portraits, and moments that go unnoticed.",
+   tags:["Street Photography","Portraits","Digital Camera","Lightroom","Photoshop"],
+   photos:[
+     {src:"images/photo-5.jpg", ratio:0.667, alt:"A woman with an iced coffee in warm window light at a café table"},
+     {src:"images/photo-3.jpg", ratio:1.535, alt:"Riders on the 1 train beneath the South Ferry and Bronx destination sign"},
+     {src:"images/photo-2.jpg", ratio:1.5, alt:"A man in a blue suit eating at a brightly signed hot dog stand at night"},
+     {src:"images/photo-6.jpg", ratio:1.5, alt:"A smiling cook grilling sausages beneath hanging peppers at a street stall"},
+     {src:"images/photo-1.jpg", ratio:1.5, alt:"Layered reflections of shoppers and a colorful mural in a glass atrium"},
+     {src:"images/photo-10.jpg", ratio:1.5, alt:"A weathered, colorful mechanical sculpture hanging over a storefront with mannequins and a Cocktails sign"},
+     {src:"images/photo-8.jpg", ratio:1.5, alt:"A vendor reaching up beside rows of pink and yellow lemonades at night"},
+     {src:"images/photo-7.jpg", ratio:1.5, alt:"Two men at a yellow café table set up in the middle of an open street"},
+     {src:"images/photo-4.jpg", ratio:1.5, alt:"A woman eating a pastry at a marble café table"},
+     {src:"images/photo-9.jpg", ratio:1.5, alt:"A teenager on a subway platform checking his phone beside a large wooden crate"}
+   ]},
+
+];
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[m]));
+
+const ytId = u => { const m = String(u).match(/(?:youtu\.be\/|v=|shorts\/|embed\/)([\w-]{11})/); return m ? m[1] : ""; };
+const ev = e => e.youtube
+  ? `<a class="e link vid" href="${esc(e.youtube)}"><div class="frame"><img src="${e.thumb?esc(e.thumb):`https://img.youtube.com/vi/${ytId(e.youtube)}/hqdefault.jpg`}" alt="" onerror="this.remove()"><b>▶</b></div><span>${esc(e.label)}</span></a>`
+  : e.src && e.zoom
+  ? `<div class="e"><button class="frame zoom" data-src="${esc(e.src)}" data-cap="${esc(e.label)}" aria-label="View ${esc(e.label)} full size"><img src="${esc(e.src)}" alt=""></button><span>${esc(e.label)}${e.pdf?` · <a href="${esc(e.pdf)}">PDF ↗</a>`:""}</span></div>`
+  : e.src && e.pdf
+  ? `<a class="e link doc" href="${esc(e.pdf)}"><div class="frame"><img src="${esc(e.src)}" alt=""></div><span>${esc(e.label)} · PDF ↗</span></a>`
+  : e.src
+  ? `<figure class="e" style="margin:0"><div class="frame"><img src="${esc(e.src)}" alt="${esc(e.label)}"></div><span>${esc(e.label)}</span></figure>`
+  : e.href && e.thumb
+  ? `<a class="e link doc" href="${esc(e.href)}"><div class="frame"><img src="${esc(e.thumb)}" alt=""></div><span>${esc(e.label)} ↗</span></a>`
+  : e.href
+  ? `<a class="e chip" href="${esc(e.href)}"><span>${esc(e.label)}</span><b aria-hidden="true">↗</b></a>`
+  : `<div class="e todo"><div class="frame">To Add</div><span>${esc(e.label)}</span></div>`;
+
+const gallery = ph => `<div class="gal">${(ph.length?ph:Array.from({length:10},()=>null)).map((x,i)=>x
+  ? `<figure style="flex-grow:${x.ratio||1.5};width:${Math.round((x.ratio||1.5)*230)}px;aspect-ratio:${x.ratio||1.5}"><button class="gz zoom" data-src="${esc(x.src)}" data-cap="${esc(x.caption||"")}" aria-label="View photo full size: ${esc(x.alt||x.caption||"photograph")}"><img src="${esc(x.src)}" alt="${esc(x.alt||x.caption||"Photograph")}" loading="lazy"></button>${x.caption?`<figcaption>${esc(x.caption)}</figcaption>`:""}</figure>`
+  : `<figure class="todo" style="aspect-ratio:${["4/5","3/2","1/1","3/4","4/3","5/4","2/3","3/2","4/5","1/1"][i%10]}">Photo ${i+1}</figure>`).join("")}</div>`;
+const rep = () => `<table class="rep stack"><thead><tr><th>Piece</th><th>Type</th><th>Composer</th><th>From</th><th>Video</th></tr></thead><tbody>${
+  REPERTOIRE.map(r=>`<tr><td><em>${esc(r.title)}</em></td><td>${esc(r.type||"")}</td><td>${esc(r.composer)}</td><td>${esc(r.work||"")}</td><td>${r.video?`<a href="${esc(r.video)}">Watch ↗</a>`:""}</td></tr>`).join("")}</tbody></table>`;
+const shown = list => (list||[]).filter(e => SHOW_PLACEHOLDERS || e.src || e.href || e.youtube);
+const visible = p => SHOW_PLACEHOLDERS || !(p.photos && !p.photos.length);
+const LIVE = () => PROJECTS.filter(visible);
+const item = p => `<article class="item">
+  <div class="row"><h4>${esc(p.title)}</h4><span class="pill">${p.status}</span></div>
+  <p class="where">${esc(p.where)}</p>
+  <p class="txt">${esc(p.text)}</p>
+  <p class="tags">${p.tags.map(esc).join(" · ")}</p>
+  ${p.photos?gallery(p.photos):""}
+  ${p.repertoire?rep():""}
+  ${shown(p.evidence).length?`<div class="ev"><h5>Evidence</h5><div class="evs">${shown(p.evidence).map(ev).join("")}</div></div>`:""}
+  ${p.sql?p.sql.map(q=>`<details class="sql"><summary>View SQL: ${esc(q.q)}</summary><pre><code>${esc(q.code)}</code></pre>${q.note?`<p class="sqlnote">${esc(q.note)}</p>`:""}</details>`).join(""):""}
+</article>`;
+
+let cur = "all";
+const ALL = {id:"all", c:"var(--plate)", name:"All Work", sub:"Every project, grouped by category"};
+const VIEWS = [ALL, ...CATS];
+function render(){
+  const c = VIEWS.find(x=>x.id===cur);
+  $("tabs").innerHTML = VIEWS.map(x=>{
+    const n = x.id==="all" ? LIVE().length : LIVE().filter(p=>p.cat===x.id).length;
+    if(!n && !SHOW_PLACEHOLDERS) return "";
+    return `<a class="tab" role="tab" href="#${x.id}" data-k="${x.id}" style="--c:${x.c}" aria-selected="${x.id===cur}">${esc(x.name)}<small>${n}</small></a>`;
+  }).join("");
+  if(cur==="all"){
+    $("page").innerHTML = CATS.map(k=>{
+      const its = LIVE().filter(p=>p.cat===k.id);
+      return its.length ? `<section class="group"><h3>${esc(k.name)}</h3><p>${esc(k.sub)}</p>${its.map(item).join("")}</section>` : "";
+    }).join("");
+    return;
+  }
+  const i = CATS.findIndex(x=>x.id===cur);
+  const items = LIVE().filter(p=>p.cat===cur);
+  const prev = CATS[i-1] || ALL, next = CATS[i+1];
+  $("page").innerHTML = `<h3>${esc(c.name)}</h3><p>${esc(c.sub)}</p>` +
+    (items.length ? items.map(item).join("") : `<p class="empty">Projects coming soon.</p>`) +
+    `<div class="pager">${prev?`<a href="#${prev.id}" data-k="${prev.id}">←<b>${esc(prev.name)}</b></a>`:"<span></span>"}${next?`<a href="#${next.id}" data-k="${next.id}"><b>${esc(next.name)}</b>→</a>`:""}</div>`;
+}
+function go(k){
+  setTimeout(()=>{ const t=document.querySelector('.tab[aria-selected=true]'); if(t&&t.scrollIntoView) t.scrollIntoView({block:"nearest",inline:"nearest"}); },0);
+  cur = k; render();
+  try{ history.replaceState(null,"","#"+cur); }catch(_){}
+  const w=document.querySelector(".works"); if(w && w.getBoundingClientRect().top < 0) w.scrollIntoView();
+}
+function fromHash(scroll){
+  const h = location.hash.slice(1);
+  if(VIEWS.some(c=>c.id===h)){ cur=h; render(); if(scroll) $("work").scrollIntoView(); }
+}
+document.addEventListener("click", e=>{
+  const a = e.target.closest("a[data-k]");
+  if(a){ e.preventDefault(); go(a.dataset.k); }
+});
+addEventListener("hashchange", ()=>fromHash(true));
+const lb=$("lb");
+document.addEventListener("click", e=>{
+  const z=e.target.closest(".zoom"); if(!z) return;
+  $("lbimg").src=z.dataset.src; $("lbimg").alt=z.dataset.cap; $("lbcap").textContent=z.dataset.cap;
+  try{ lb.showModal(); }catch(_){ lb.setAttribute("open",""); }
+});
+$("lbx").addEventListener("click", ()=>lb.close());
+lb.addEventListener("click", e=>{ if(e.target===lb) lb.close(); });
+render(); fromHash(true);
+}
+</script>
+</body>
+</html>
